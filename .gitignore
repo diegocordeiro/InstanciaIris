@@ -3,7 +3,14 @@ venv/*
 *.DS_Store
 
 *.pyc
-docs/relatorios/relatorio.aux
-docs/relatorios/relatorio.fdb_latexmk
-docs/relatorios/relatorio.fls
-docs/relatorios/relatorio.log
+__pycache__/
+
+# Saída de execução LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+venv/*
