@@ -11,45 +11,59 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.13
 Description-Content-Type: text/markdown
 
-# testeprojeto
+# InstanciaIris
 
-Machine Learning project using FabricaIA template
+Pipeline reproduzível de aprendizado de máquina para o **dataset Iris**, construído sobre o **template FabricaIA**. O projeto cobre o fluxo completo: pré-processamento (codificação do rótulo e padronização das características), treinamento de um classificador **Random Forest** com rastreamento de experimentos em **MLflow**, persistência do modelo e exposição de um endpoint de predição REST via **FastAPI**.
 
-## Estrutura do Projeto
+## Destaques
+
+- Notebook executado de ponta a ponta sem erros.
+- Modelo `RandomForestClassifier` (100 estimadores, profundidade máxima 10) com **acurácia 0,9333** e **F1 0,90**.
+- Experimento `testeprojeto_experiments` registrado no MLflow (backend SQLite).
+- API `POST /predict` respondeu à requisição de teste com a classe e as probabilidades associadas.
+
+## Estrutura do Projeto utilizada
 
 ```text
-testeprojeto/
-├── config/             # Arquivos de configuração
-├── data/               # Armazenamento de dados (raw, processed, external)
-├── docs/               # Documentação técnica
-├── models/             # Artefatos de modelos treinados
-├── notebooks/          # Jupyter notebooks para experimentação
-├── pipelines/          # Definições de pipelines e DAGs do Airflow
-├── src/                # Código fonte do projeto (API, Processamento, Modelagem)
-├── tests/              # Testes unitários e de integração
-├── Makefile            # Comandos de automação
-├── Dockerfile          # Configuração Docker
-└── pyproject.toml      # Metadados e dependências do projeto
+InstanciaIris/
+├── config/             # Arquivos de configuração (config.yaml)
+├── data/               # Dados (raw, processed, external)
+├── docs/               # Documentação técnica e relatório SBC
+├── models/             # Modelos treinados e artefatos
+└── notebooks/          # Notebook de experimentação (fabricaia_example.ipynb)
+```
+## Pipeline e Resultados
+
+- **Dataset:** `data/raw/iris.csv` — 150 linhas, 4 características e a coluna `target` (setosa, versicolor, virginica).
+- **Pré-processamento:** limpeza, `LabelEncoder` no alvo, `StandardScaler` nas características e divisão 80/20 (119 amostras de treino).
+- **Modelo:** `RandomForestClassifier(n_estimators=100, max_depth=10)` treinado via `ModelTrainer` e rastreado no experimento `testeprojeto_experiments`.
+- **Métricas:** acurácia 0,9333 · precisão 0,90 · recall 0,90 · F1 0,90.
+- **Artefato:** `models/trained/model.pkl` (RandomForestClassifier).
+
+### Exemplo de predição (API)
+
+Requisição:
+```json
+{
+  "features": {
+    "sepal_length": 5.1,
+    "sepal_width": 3.5,
+    "petal_length": 1.4,
+    "petal_width": 0.2
+  },
+  "model_name": "model"
+}
 ```
 
-## Configuração do Ambiente
+Resposta:
+```json
+{ "prediction": 2,
+  "probability": { "0": 0.01, "1": 0.24, "2": 0.75 },
+  "confidence": 0.75 }
+```
 
-1.  **Pré-requisitos:** Python 3.13 ou superior e Docker (opcional).
-2.  **Instalação:**
-    ```bash
-    make install
-    ```
-3.  **Ambiente de Desenvolvimento:**
-    ```bash
-    make setup
-    ```
+## Documentação relacionada
 
-## Comandos Principais
+- Relatório técnico (padrão SBC): `docs/relatorios/relatorio.tex`.
+- Guia de início rápido: `docs/QUICKSTART.md`.
 
--   `make test`: Executa a suíte de testes.
--   `make api`: Inicia o servidor da API FastAPI.
--   `make jupyter`: Inicia o ambiente Jupyter.
--   `make docker-compose-up`: Inicia todos os serviços via Docker Compose.
-
----
-Gerado automaticamente a partir do template FabricaIA.
