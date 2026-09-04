@@ -1,0 +1,23 @@
+artifact_path: /Users/diegocordeirodeoliveira/Documents/mestrado/ufpi2025/fabrica_sw/Projetos/Teste_Template/testeprojeto/mlruns/1/models/m-7be780a67e324b15a6c2b8dea862cced/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.2
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.13.0
+model_id: m-7be780a67e324b15a6c2b8dea862cced
+model_size_bytes: 154551
+model_uuid: m-7be780a67e324b15a6c2b8dea862cced
+prompts: null
+run_id: 141b2739d8f44c21b1f6b29a592e868e
+utc_time_created: '2026-06-10 20:37:57.799254'

@@ -1,0 +1,52 @@
+\begin{thebibliography}{}
+
+\bibitem[Bergstra and Bengio 2012]{bergstra2012random}
+Bergstra, J. and Bengio, Y. (2012).
+\newblock Random search for hyper-parameter optimization.
+\newblock {\em Journal of Machine Learning Research}, 13:281--305.
+
+\bibitem[Breiman 2001]{breiman2001randomforests}
+Breiman, L. (2001).
+\newblock Random forests.
+\newblock {\em Machine Learning}, 45(1):5--32.
+
+\bibitem[Dietterich 2000]{dietterich2000ensemble}
+Dietterich, T.~G. (2000).
+\newblock Ensemble methods in machine learning.
+\newblock In {\em Multiple Classifier Systems (MCS)}, pages 1--15. Springer.
+
+\bibitem[Fisher 1936]{fisher1936iris}
+Fisher, R.~A. (1936).
+\newblock The use of multiple measurements in taxonomic problems.
+\newblock {\em Annals of Eugenics}, 7(2):179--188.
+
+\bibitem[Kohavi 1995]{kohavi1995cross}
+Kohavi, R. (1995).
+\newblock A study of cross-validation and bootstrap for accuracy estimation and
+  model selection.
+\newblock In {\em International Joint Conference on Artificial Intelligence
+  (IJCAI)}, pages 1137--1143.
+
+\bibitem[Pedregosa et~al. 2011]{pedregosa2011sklearn}
+Pedregosa, F., Varoquaux, G., Gramfort, A., et~al. (2011).
+\newblock Scikit-learn: Machine learning in python.
+\newblock {\em Journal of Machine Learning Research}, 12:2825--2830.
+
+\bibitem[Ramirez ]{ramirezfastapi}
+Ramirez, S.
+\newblock Fastapi documentation.
+\newblock \url{https://fastapi.tiangolo.com}.
+\newblock Acessado em 2026.
+
+\bibitem[Sokolova and Lapalme 2009]{sokolova2009systematic}
+Sokolova, M. and Lapalme, G. (2009).
+\newblock A systematic analysis of performance measures for classification
+  tasks.
+\newblock {\em Information Processing and Management}, 45(4):427--437.
+
+\bibitem[Zaharia et~al. 2018]{zaharia2018mlflow}
+Zaharia, M., Chen, A., Davidson, A., et~al. (2018).
+\newblock Accelerating the machine learning lifecycle with mlflow.
+\newblock {\em IEEE Data Engineering Bulletin}, 41(4):39--45.
+
+\end{thebibliography}
