@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="testeprojeto API",
+    title="instanciairis API",
     description="Machine Learning project using FabricaIA template",
     version="1.0.0",
 )
@@ -88,7 +88,7 @@ async def startup_event():
 async def root():
     """Root endpoint."""
     return {
-        "message": "testeprojeto API",
+        "message": "instanciairis API",
         "version": "1.0.0",
         "available_models": list(models.keys()),
     }

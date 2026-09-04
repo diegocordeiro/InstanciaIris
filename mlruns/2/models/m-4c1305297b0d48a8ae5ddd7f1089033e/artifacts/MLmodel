@@ -1,0 +1,24 @@
+artifact_path: "/Users/diegocordeirodeoliveira/Documents/mestrado/ufpi2025/Disciplinas/T\xF3\
+  picos Avan\xE7ados em Intelig\xEAncia Computacional/Trabalho/InstanciaIris/mlruns/2/models/m-4c1305297b0d48a8ae5ddd7f1089033e/artifacts"
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.12.9
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.0
+    skops_trusted_types: null
+mlflow_version: 3.16.0
+model_id: m-4c1305297b0d48a8ae5ddd7f1089033e
+model_size_bytes: 1795569
+model_uuid: m-4c1305297b0d48a8ae5ddd7f1089033e
+prompts: null
+run_id: 0f9ea98e02a240cb88b5c3b708c2b585
+utc_time_created: '2026-09-04 19:43:18.530364'

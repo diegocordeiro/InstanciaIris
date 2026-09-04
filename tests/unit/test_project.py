@@ -1,7 +1,7 @@
 """
-testeprojeto - Test Suite
+instanciairis - Test Suite
 
-This module contains unit tests for testeprojeto modules.
+This module contains unit tests for instanciairis modules.
 """
 
 import os
@@ -288,7 +288,7 @@ class TestDataVisualizer:
 
 # Integration tests
 class TestIntegration:
-    """Integration tests for testeprojeto pipeline."""
+    """Integration tests for instanciairis pipeline."""
 
     def test_full_pipeline(self):
         """Test a complete pipeline workflow."""

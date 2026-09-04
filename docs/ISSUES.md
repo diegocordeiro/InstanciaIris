@@ -1,4 +1,4 @@
-# Issues do Projeto testeprojeto
+# Issues do Projeto instanciairis
 
 > Gerado a partir dos comentários `#TODO`, `#bugfix` e pendências identificadas nos arquivos:
 > `src/api/main.py`, `notebooks/fabricaia_example.ipynb` e `Makefile`.

@@ -1,4 +1,4 @@
-# testeprojeto Configuration File
+# instanciairis Configuration File
 
 # Data paths
 DATA_PATHS:
@@ -54,11 +54,11 @@ VISUALIZATION:
 LOGGING:
   level: "INFO"
   format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  file: "logs/testeprojeto.log"
+  file: "logs/instanciairis.log"
 
 # MLflow settings
 MLFLOW:
   tracking_uri: "sqlite:///mlflow.db"
-  experiment_name: "testeprojeto_experiments"
+  experiment_name: "instanciairis_experiments"
   registry_uri: "models/mlflow"
   enable_tracking: true

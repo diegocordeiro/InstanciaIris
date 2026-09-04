@@ -6,7 +6,7 @@ Pipeline reproduzível de aprendizado de máquina para o **dataset Iris**, const
 
 - Notebook executado de ponta a ponta sem erros.
 - Modelo `RandomForestClassifier` (100 estimadores, profundidade máxima 10) com **acurácia 0,9333** e **F1 0,90**.
-- Experimento `testeprojeto_experiments` registrado no MLflow (backend SQLite).
+- Experimento `instanciairis_experiments` registrado no MLflow (backend SQLite).
 - API `POST /predict` respondeu à requisição de teste com a classe e as probabilidades associadas.
 
 ## Estrutura do Projeto utilizada
@@ -23,7 +23,7 @@ InstanciaIris/
 
 - **Dataset:** `data/raw/iris.csv` — 150 linhas, 4 características e a coluna `target` (setosa, versicolor, virginica).
 - **Pré-processamento:** limpeza, `LabelEncoder` no alvo, `StandardScaler` nas características e divisão 80/20 (119 amostras de treino).
-- **Modelo:** `RandomForestClassifier(n_estimators=100, max_depth=10)` treinado via `ModelTrainer` e rastreado no experimento `testeprojeto_experiments`.
+- **Modelo:** `RandomForestClassifier(n_estimators=100, max_depth=10)` treinado via `ModelTrainer` e rastreado no experimento `instanciairis_experiments`.
 - **Métricas:** acurácia 0,9333 · precisão 0,90 · recall 0,90 · F1 0,90.
 - **Artefato:** `models/trained/model.pkl` (RandomForestClassifier).
 
@@ -45,8 +45,8 @@ Requisição:
 Resposta:
 ```json
 { "prediction": 2,
-  "probability": { "0": 0.01, "1": 0.24, "2": 0.75 },
-  "confidence": 0.75 }
+  "probability": { "0": 0.00, "1": 0.31, "2": 0.69 },
+  "confidence": 0.69 }
 ```
 
 ## Documentação relacionada

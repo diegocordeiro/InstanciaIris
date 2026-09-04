@@ -11,7 +11,7 @@ src/models/mlflow_tracker.py
 src/models/trainer.py
 src/visualization/__init__.py
 src/visualization/plots.py
-testeprojeto.egg-info/PKG-INFO
-testeprojeto.egg-info/SOURCES.txt
-testeprojeto.egg-info/dependency_links.txt
-testeprojeto.egg-info/top_level.txt
+instanciairis.egg-info/PKG-INFO
+instanciairis.egg-info/SOURCES.txt
+instanciairis.egg-info/dependency_links.txt
+instanciairis.egg-info/top_level.txt
