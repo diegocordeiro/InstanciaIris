@@ -22,6 +22,7 @@
 }
 
 \sloppy
+\raggedbottom
 
 \title{InstanciaIris: Instanciação, Execução e Validação de um Projeto de Machine Learning a 
 partir do Template da FábricaIA}
@@ -159,6 +160,21 @@ trainer.save_model(model, project_path("models","trained","model.pkl"),
 trainer.end_run()
 \end{lstlisting}
 
+Em uma segunda execução, a última célula do notebook treinou novamente o classificador
+Random Forest sem fixar os hiperparâmetros (valores padrão), gerando um novo run no MLflow
+sob o nome \texttt{entrega\_topicos\_avancados}. Esse run alcançou acurácia de 0{,}9667,
+precisão 1{,}00, recall 0{,}90 e F1 0{,}9474.
+
+\begin{lstlisting}[breaklines=true]
+trainer = ModelTrainer(
+    model_type="classification",
+    config_path=str(project_path("config", "config.yaml")))
+model = trainer.train_model(X_train, y_train, 'random_forest',
+    run_name='entrega_topicos_avancados')
+metrics = trainer.evaluate_model(model, X_test, y_test)
+trainer.end_run()
+\end{lstlisting}
+
 \subsection{API de predição}
 Na inicialização, a aplicação FastAPI carrega os modelos de models/trained/*.pkl e deriva o nome do
 modelo removendo o sufixo \_model. O endpoint POST /predict recebe um corpo JSON com as características 
@@ -188,7 +204,7 @@ engenharia de características e visualização, com 18 testes aprovados.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.45\textwidth]{fig_testes.png}
+\includegraphics[width=0.35\textwidth]{fig_testes.png}
 \caption{Relatório teste automatizados.}
 \label{fig:test}
 \end{figure}
@@ -217,12 +233,11 @@ entrega\_topicos\_avancados & 0{,}9667 & 1{,}00 & 0{,}90 & 0{,}9474 \\
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.45\textwidth]{fig_ml.png}
-\caption{Relatório treinamento MLFlow.}
+\caption{Registro do treinamento MLFlow.}
 \label{fig:ml}
 \end{figure}
 
 \subsection{Análise exploratória e importância das características}
-
 A Figura~\ref{fig:dist} apresenta a distribuição de duas das quatro características do dataset Iris (sepal\_length e sepal\_width), selecionadas para a análise exploratória, 
 permitindo observar o comportamento dos respectivos valores na amostra analisada. 
 A Figura~\ref{fig:corr}, por sua vez, apresenta a matriz de correlação entre as características do dataset, possibilitando avaliar 
@@ -258,14 +273,14 @@ instanciairis\_experiments.
 
 \section{Conclusão}
 Este relatório documentou o processo de instanciação, desenvolvimento e execução do projeto 
-\textit{InstanciaIris}, a partir do template disponibilizado pela 
-\textit{FabricaIA}. Os objetivos propostos foram alcançados, contemplando a construção 
-e a execução do pipeline de pré-processamento e treinamento utilizando \textit{Jupyter Notebook}. 
-O modelo \textit{Random Forest} foi treinado, avaliado e devidamente rastreado por meio do 
-\textit{MLflow}.
+InstanciaIris, a partir do template disponibilizado pela 
+FabricaIA. Os objetivos propostos foram alcançados, contemplando a construção 
+e a execução do pipeline de pré-processamento e treinamento utilizando Jupyter Notebook. 
+O modelo Random Forest foi treinado, avaliado e devidamente rastreado por meio do 
+MLflow.
 
 Além disso, o modelo treinado foi persistido e disponibilizado por meio de uma API REST 
-desenvolvida com \textit{FastAPI}. Por fim, seu funcionamento foi validado por meio 
+desenvolvida com FastAPI. Por fim, seu funcionamento foi validado por meio 
 de testes automatizados e de uma chamada de predição realizada sobre dados reais, 
 confirmando a integração entre as etapas de treinamento, rastreamento, persistência e 
 disponibilização do modelo.
