@@ -6,6 +6,9 @@
 
 \usepackage{listings}
 \usepackage{float}
+\setlength{\intextsep}{8pt}
+\setlength{\abovecaptionskip}{3pt}
+\setlength{\belowcaptionskip}{3pt}
 \lstset{
   basicstyle=\ttfamily\footnotesize,
   breaklines=true,
@@ -35,24 +38,21 @@ Programa de Pós-Graduação em Ciência da Computação (PPGCC) \\
 \maketitle
 
 \begin{abstract}
-This technical report presents the instantiation and the end-to-end execution of the InstanciaIris project,
-a machine learning workflow built on the FabricaIA template. The goal was to establish a reproducible
-pipeline for the Iris dataset, covering preprocessing (label encoding and feature standardization),
-training of a Random Forest classifier with experiment tracking in MLflow, model persistence, and the
-exposure of a REST prediction endpoint via FastAPI. The notebook was executed without errors: the
-Random Forest model (100 estimators, maximum depth 10) achieved an accuracy of 0,9333 and an F1 score
-of 0.90, being registered in the MLflow experiment instanciairis\_experiments. The prediction API
-answered a test request returning a class and the associated probabilities.
+This technical report presents the instantiation and end-to-end execution of the InstanciaIris project, 
+a machine learning workflow built upon the FabricaIA template. The objective is to execute the pipeline 
+for the Iris dataset, covering preprocessing (label encoding and feature standardization), training of a 
+Random Forest classifier with experiment tracking using MLflow, model persistence, and exposure of a REST 
+prediction endpoint via FastAPI. The process was executed without errors and was recorded in the instanciairis\_experiments experiment in MLflow.
+The prediction API successfully responded to a test request with the predicted class and its associated probabilities.
 \end{abstract}
 
 \begin{resumo}
 Este relatório técnico apresenta a instanciação e a execução ponta a ponta do projeto InstanciaIris,
-um fluxo de aprendizado de máquina construído sobre o template FabricaIA. O objetivo foi estabelecer
-um pipeline reproduzível para o dataset Iris, abrangendo pré-processamento (codificação do rótulo e
+um fluxo de aprendizado de máquina construído sobre o template FabricaIA. O objetivo executar
+o pipeline para o dataset Iris, abrangendo pré-processamento (codificação do rótulo e
 padronização das características), treinamento de um classificador Random Forest com rastreamento de
 experimentos em MLflow, persistência do modelo e exposição de um endpoint de predição REST via FastAPI.
-O notebook foi executado sem erros: o modelo Random Forest (100 estimadores, profundidade máxima 10)
-alcançou acurácia de 0,9333 e F1 de 0,90, sendo registrado no experimento instanciairis\_experiments do
+O processo foi executado sem erros, sendo registrado no experimento instanciairis\_experiments do
 MLflow. A API de predição respondeu a uma requisição de teste com a classe e as probabilidades
 associadas.
 \end{resumo}
@@ -91,8 +91,10 @@ de aprender uma função capaz de estabelecer uma relação entre as caracterís
 de entrada e o respectivo rótulo de saída. Após o treinamento, o modelo pode utilizar
  essa relação para realizar previsões sobre novos dados não observados. 
  
-O Random Forest é um método de conjunto (ensemble) baseado em árvores de decisão, no qual múltiplas árvores são construídas sobre subamostras aleatórias dos
-dados e de suas características, e a predição final é obtida por votação majoritária~\cite{breiman2001randomforests, dietterich2000ensemble}.
+O Random Forest é um método de conjunto (ensemble) baseado em árvores de decisão, no qual múltiplas árvores são c
+onstruídas sobre subamostras aleatórias dos
+dados e de suas características, e a predição final é obtida por votação 
+majoritária~\cite{breiman2001randomforests, dietterich2000ensemble}.
 A implementação utilizada neste trabalho é a fornecida pela biblioteca scikit-learn~\cite{pedregosa2011sklearn}.
 
 O dataset Iris~\cite{fisher1936iris} contém 150 amostras organizadas em três classes (setosa, versicolor
@@ -164,34 +166,39 @@ e o nome do modelo e retorna a classe predita, as probabilidades e a confiança.
 
 \begin{lstlisting}[breaklines=true]
 POST /predict
-{ "features": { "sepal_length": 5.1, "sepal_width": 3.5,
-    "petal_length": 1.4, "petal_width": 0.2 },
+{ "features": { 
+  "sepal_length": 5.1, "sepal_width": 3.5,
+  "petal_length": 1.4, "petal_width": 0.2 
+  },
   "model_name": "model" }
 \end{lstlisting}
 
 A resposta retornada é exibida abaixo.
 
-\begin{lstlisting}[breaklines=true]
-{ "prediction": 2,
-  "probability": { "0": 0.01, "1": 0.24, "2": 0.75 },
-  "confidence": 0.75 }
-\end{lstlisting}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{fig_predict.png}
+\caption{Resposta da API de predição.}
+\label{fig:predict}
+\end{figure}
 
 \subsection{Validação por testes automatizados}
 A suíte de testes do projeto foi executada e validou os componentes de processamento, treinamento,
 engenharia de características e visualização, com 18 testes aprovados.
 
-\begin{lstlisting}[breaklines=true]
-$ pytest tests/
-collected 18 items
-tests/unit/test_project.py ..................  [100%]
-18 passed, 4 warnings in 5.81s
-\end{lstlisting}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{fig_testes.png}
+\caption{Relatório teste automatizados.}
+\label{fig:test}
+\end{figure}
 
 \section{Resultados e Discussão}
 Os resultados obtidos confirmam a execução do pipeline. A Tabela~\ref{tab:metricas}
 resume as métricas do modelo Random Forest treinado em dois momentos e registradas no experimento instanciairis\_experiments
-com MLFlow.
+com MLFlow. A figura~\ref{fig:ml} por sua vez, apresenta o registro do treinamento no MLflow, 
+incluindo os hiperparâmetros utilizados pelo modelo Random Forest, bem como as métricas de avaliação e os 
+artefatos gerados durante a execução.
 
 \begin{table}[H]
 \centering
@@ -207,6 +214,13 @@ entrega\_topicos\_avancados & 0{,}9667 & 1{,}00 & 0{,}90 & 0{,}9474 \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{fig_ml.png}
+\caption{Relatório treinamento MLFlow.}
+\label{fig:ml}
+\end{figure}
+
 \subsection{Análise exploratória e importância das características}
 
 A Figura~\ref{fig:dist} apresenta a distribuição de duas das quatro características do dataset Iris (sepal\_length e sepal\_width), selecionadas para a análise exploratória, 
@@ -217,21 +231,21 @@ atribuída pelo modelo \textit{Random Forest} a cada característica, indicando 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.55\textwidth]{fig_distribuicao.png}
+\includegraphics[width=0.45\textwidth]{fig_distribuicao.png}
 \caption{Distribuição de duas características do dataset Iris (sepal\_length e sepal\_width).}
 \label{fig:dist}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.35\textwidth]{fig_correlacao.png}
+\includegraphics[width=0.45\textwidth]{fig_correlacao.png}
 \caption{Matriz de correlação entre as características do dataset Iris.}
 \label{fig:corr}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.35\textwidth]{fig_importancia.png}
+\includegraphics[width=0.45\textwidth]{fig_importancia.png}
 \caption{Importância das características atribuída pelo modelo Random Forest.}
 \label{fig:imp}
 \end{figure}
